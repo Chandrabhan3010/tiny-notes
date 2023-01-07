@@ -18,4 +18,16 @@
     margin-left: auto;
     margin-right: auto;
     border-radius: 10px;
+    max-height: 380px;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+}
+.note-editor-container{
+    background-color: white;
+    padding: 10px;
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+    height: 380px;
 }
