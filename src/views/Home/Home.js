@@ -7,38 +7,37 @@ import Note from "../../components/Note/Note";
 function Home() {
   const [notes, setNotes] = useState([
     {
-      title: "note1",
-      content: "this is contents of note 1",
+      title: "note",
+      content: "you can more note to this list",
     },
-    {
-      title: "note2",
-      content: "this is contents of note 2",
-    },
-    {
-      title: "note3",
-      content: "this is contents of note 3",
-    },
-    {
-      title: "note4",
-      content: "this is contents of note 4",
-    },
-    {
-      title: "notes5",
-      content: "this is contents of note5",
-    },
-    {
-      title: "notes6",
-      content: "this is contents of note6",
-    },
-    {
-      title: "notes7",
-      content: "this is contents of note7",
-    },
-  ]);
+  ])
+
+  const [title , setTitle] = useState("")
+  const [content , setContent] = useState("")
+
+  function addNote(){
+
+    const newNote={
+      "title":title,
+      "content":content
+    }
+
+    //const temp = notes;
+    //temp.push(newNote)
+    //setNotes(temp)
+
+    /* setNotes([...notes , {title:title , content:content}]) */
+    setNotes([...notes, newNote ])
+
+    alert('note added successfully!')
+
+    setTitle("")
+    setContent("")
+  }
 
   return (
     <div>
-      {/*< Navbar/> - this is comment section in which navbar is deleted */}
+      {/*    < Navbar/> - this is comment section in which navbar is deleted */}
       <div className="app-title-container">
         <h1 className="app-title">Mine Notes </h1>
       </div>
@@ -56,13 +55,13 @@ function Home() {
             <h3 className="text-center">Add Note</h3>
             <form>
               <div>
-                <input type="text" className="form-control " placeholder="Note Title"></input>
+                <input type="text" value={title} onChange={(e)=>{setTitle(e.target.value)}} className="form-control mt-4 " placeholder="Note Title"></input>
               </div>
               <div>
-                <input type="text" className="form-control mt-4" placeholder="Note Description"></input>
+                <input type="text" value={content} onChange={(e)=>{setContent(e.target.value)}} className="form-control mt-4" placeholder="Note Description"/>
               </div>
-              <div>
-                <button className="btn btn-primary mt-4">Add Note</button>
+              <div className="d-flex justify-content-center add-note-button-container">
+                <button type="button" className="btn btn-primary mt-4" onClick={addNote}>Add Note</button>
               </div>
             </form>
           </div>
