@@ -8,12 +8,27 @@ import Navbar from "../../components/Navbar/Navbar";
 import Note from "../../components/Note/Note";
 
 function Home() {
-  const [notes, setNotes] = useState([
+  const [notes, setNotes , ] = useState([
     {
-      title: "note",
-      content: "you can more note to this list",
-    },
+      title: "Note",
+      content: "You can add more note to this list"
+    }
   ])
+
+  // triggers innitially
+  useEffect(()=>{
+    const notes = localStorage.getItem("notes")
+    if(notes){
+      setNotes (JSON.parse(notes))
+    }
+  }, [])
+
+  // triggers when notes changes
+  useEffect(()=>{
+    if(notes.length > 1){
+      localStorage.setItem("notes", JSON.stringify(notes))
+    }
+  }, [notes]) 
 
   const [title , setTitle] = useState("")
   const [content , setContent] = useState("")
@@ -31,7 +46,7 @@ function Home() {
 
     /* setNotes([...notes , {title:title , content:content}]) */
 
-    if(title==="" || content==""){
+    if(title==="" || content===""){
       swal({
         title:"Error",
         text:"Please fill all the fields ",
@@ -55,17 +70,19 @@ function Home() {
 
   return (
     <div>
-      {/*    < Navbar/> - this is comment section in which navbar is deleted */}
+      {/* <Navbar/> - this is comment section in which navbar is deleted */}
       <div className="app-title-container">
-        <h1 className="app-title">Mine Notes </h1>
+        <h1 className="app-title">Tiny Notes</h1>
       </div>
 
       <div className="row">
         <div className="col-md-6">
           <div className="notes-container">
-            {notes.map((note, index) => {
-              return <Note title={note.title} content={note.content} />;
-            })}
+            {
+            notes.map((note, index) => {
+              return  (<Note title={note.title} content={note.content} noteIndex={index} /> )
+            } )
+          }
           </div>
         </div>
         <div className="col-md-6">
