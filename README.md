@@ -5,4 +5,4 @@
 
 ![live preview](./screenshot/Screenshot.png)
 
-[click here to see the live website](url)
+[click here to see the live website](https://tiny-notes-app-react.netlify.app/)
